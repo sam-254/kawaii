@@ -3,6 +3,6 @@
       Cras justo odio
     </a> -->
     {% for category in categories %}
-    <a href="{% url 'category' category.pk %}" class="list-group-item list-group-item-action">{{ category.title }}</a>
+    <a href="{{ category.get_absolute_url }}" class="list-group-item list-group-item-action">{{ category.title }}</a>
     {% endfor %}
 </div>
