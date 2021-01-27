@@ -1,0 +1,15 @@
+{% load news_tags %}
+{% get_categories as categories %}
+{% comment %}
+<div class="list-group">
+  <!-- <a href="#" class="list-group-item list-group-item-action active">
+    Cras justo odio
+  </a> -->
+  {% for category in categories %}
+  <a href="{% url 'category' category.pk %}" class="list-group-item list-group-item-action">{{ category.title }}</a>
+  {% endfor %}
+</div>
+
+<br>
+{% endcomment %}
+{% show_categories %}

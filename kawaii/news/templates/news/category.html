@@ -1,72 +1,31 @@
-{% spaceless %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
-    <title>{{ category.title }}</title>
-</head>
-<body>
-    <nav class="navbar navbar-expand-lg navbar-light container-fluid mb-3 justify-content-between bg-light">
-        <a class="navbar-brand my-0 col-2" href="/">Kawaii</a>
-        
-        <div class="pl-auto col-4">
-          <div class="collapse navbar-collapse" id="navbarNavDropdown">
-            <ul class="navbar-nav">
-              <li class="nav-item active">
-                <a class="nav-link" href="{% url 'news' %}">Home <span class="sr-only"></span></a>
-              </li>
-                         
-            </ul>
-          </div>
+{% extends 'base.html' %}
+{% block title %}
+  {{ category.title }}
+{% endblock %}
+
+{% block content %}
+    {% for item in current_category_news %}
+    <div class="card mb-3">
+        <div class="card-header text-info">
+            {{ item.category }}
         </div>
-      </nav>
-
-      <h2>{{ category.title }}</h2>
-    <div class="container mt-3">
-        <div class="row">
-          <div class="col-md-4">
-            <div class="list-group">
-              <!-- <a href="#" class="list-group-item list-group-item-action active">
-                Cras justo odio
-              </a> -->
-              {% for category in categories %}
-              <a href="{% url 'category' category.pk %}" class="list-group-item list-group-item-action">{{ category.title }}</a>
-              {% endfor %}
+        <div class="card-body">
+          <div class='media'>
+            {% if item.photo %}
+            <img class='' src="{{ item.photo.url }}" width='350' alt="" >
+            {% else %}
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvNodmtk0jNH8lbn9ypVFJc5jCGFvGWHopNg&usqp=CAU" width='350' alt="">
+            {% endif %}
+            <div class='media-body'>
+              <h5 class="card-title">{{ item.title }}</h5>
+            <p class="card-text">{{ item.content }}</p>
+            <h2 class='bg-warning'>{{ image_path }}</h2>
             </div>
-          </div>
-          <div class="col-md-8">
-            {% for item in current_category_news %}
-            <div class="card mb-3">
-                <div class="card-header text-info">
-                    {{ item.category }}
-                </div>
-                <div class="card-body">
-                  <div class='media'>
-                    {% if item.photo %}
-                    <img class='' src="{{ item.photo.url }}" width='350' alt="" >
-                    {% else %}
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvNodmtk0jNH8lbn9ypVFJc5jCGFvGWHopNg&usqp=CAU" width='350' alt="">
-                    {% endif %}
-                    <div class='media-body'>
-                      <h5 class="card-title">{{ item.title }}</h5>
-                    <p class="card-text">{{ item.content }}</p>
-                    <h2 class='bg-warning'>{{ image_path }}</h2>
-                    </div>
-                  </div>  
-                </div>
-                <div class="card-footer text-muted">
-                <small>{{ item.created_at|date:'Y-m-d H:i' }}</small>
-                </div>
-              </div>
-            {% endfor %}
-
-    <!-- <small>{% now 'jS F Y H:i' %}</small>   -->
-            </div>
-         </div>
-    </div> 
-</body>
-</html>
-
-{% endspaceless %}
+          </div>  
+        </div>
+        <div class="card-footer text-muted">
+        <small>{{ item.created_at|date:'Y-m-d H:i' }}</small>
+        </div>
+      </div>
+    {% endfor %}
+{% endblock %}
