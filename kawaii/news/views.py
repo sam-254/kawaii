@@ -7,7 +7,6 @@ def index(request):
     context = {
         'news': news,
         'title': 'News list',
-        # 'categories': categories
         }
     return render(request, 'news/index.html',context=context)
 
@@ -20,7 +19,6 @@ def get_category(request, category_id):
 
     return render(request, 'news/category.html', {
         'current_category_news': current_category_news,
-        # 'categories': categories,
         'current_category': current_category})
 
 
