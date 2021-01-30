@@ -5,3 +5,9 @@
 .w-22 {
     width: 22%;
 }
+
+.errorlist {
+    color: red;
+    list-style: none;
+}
+
