@@ -10,7 +10,7 @@ class News(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     photo = models.ImageField(upload_to='photos/%Y/%m/%d/', blank=True)
     is_published = models.BooleanField(default=True)
-    category = models.ForeignKey('Category', on_delete=models.PROTECT, null=True)
+    category = models.ForeignKey('Category', on_delete=models.PROTECT)
 
     def get_absolute_url(self):
         return reverse_lazy('view_news', kwargs={"news_id": self.pk})

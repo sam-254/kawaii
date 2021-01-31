@@ -7,7 +7,7 @@
 
  <h2 class='text-muted'>Add news</h2>
  {{ form.non_field.errors }}
- <form action="{% url 'add_news' %}" method="POST">
+ <form action="{% url 'add_news' %}" method="POST" enctype="multipart/form-data">
 
    {% csrf_token %}
 
@@ -59,6 +59,6 @@
   {% endfor %}
   {% endcomment %}
 
-  <button type="submit" class="btn btn-success btn-block">Add article</button>
+  <button type="submit"  enctype="multipart/form-data"class="btn btn-success btn-block">Add article</button>
  </form>
 {% endblock %}

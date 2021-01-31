@@ -1,4 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
+from django.core.files.storage import FileSystemStorage
+
 
 from .models import News, Category
 from .forms import NewsForm
@@ -32,9 +34,11 @@ def view_news(request, news_id: int):
 
 def add_news(request):
     if request.method == "POST":
-        form = NewsForm(request.POST)
+       
+        form = NewsForm(request.POST, request.FILES)
         if form.is_valid():
-            news = News.objects.create(**form.cleaned_data)
+            # news = News.objects.create(**form.cleaned_data)         #without model connected
+            news = form.save()
             return redirect(news)
     else:
         form = NewsForm()
