@@ -7,6 +7,19 @@
 }
 
 .errorlist {
-    color: red;
     list-style: none;
+    background-color: #dc3545!important;
+    display: inline-block;
+    padding: .35em .65em;
+    font-size: .75em;
+    font-weight: 700;
+    line-height: 1;
+    color: #fff;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: .25rem;
+    margin-left: 1.2rem;
+    margin-bottom: 0.2rem;
+    margin-top: 1.2rem
 }

@@ -1,7 +1,10 @@
 from django import forms
+from django.core.exceptions import ValidationError
+
 # from .models import Category
 from .models import News
 
+import re
 
 
 # class NewsForm(forms.Form):
@@ -22,7 +25,12 @@ from .models import News
     #     }))
 
 
+
 class NewsForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super(NewsForm, self).__init__(*args, **kwargs)
+        self.fields['category'].empty_label = 'Please, choose category  ⯆'
+
     class Meta:
         model = News
         # fields = '__all__'
@@ -31,7 +39,12 @@ class NewsForm(forms.ModelForm):
             'title': forms.TextInput(attrs={"class": 'form-control'}),
             'content': forms.Textarea(attrs={"class": 'form-control',"rows": 5}),
             'category': forms.Select(attrs={"class": 'form-control mb-3'}),
-            'photo': forms.FileInput(attrs={"class": 'form-control mb-3',
-                                            "enctype": "multipart/form-data"
-            })
+            'photo': forms.FileInput(attrs={"class": 'form-control mb-3'})
         }
+
+    def clean_title(self):
+        title = self.cleaned_data['title']
+        if re.match(r'\d', title):
+            raise ValidationError("Title should not be started with digit")
+        else:
+            return title
