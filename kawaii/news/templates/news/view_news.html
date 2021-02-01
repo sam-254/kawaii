@@ -11,17 +11,13 @@
           Category : <a class='text-info text-decoration-none' href="{{ current_news.category.get_absolute_url }}">{{ item.category }}</a> 
       </div>
       <div class="card-body">
-        <div class='media'>
           {% if current_news.photo %}
-          <img class='' src="{{ current_news.photo.url }}" width='350' alt="">
+          <img class='float-left' src="{{ current_news.photo.url }}" width='350' alt="">
           {% else %}
           <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvNodmtk0jNH8lbn9ypVFJc5jCGFvGWHopNg&usqp=CAU" width='350' alt="">
           {% endif %}
-          <div class='media-body'>
             <h5 class="card-title text-muted pt-2">{{ current_news.title }}</h5>
           <p class="card-text">{{ current_news.content }}</p>
-           </div>
-        </div>  
       </div>
       <div class="card-footer text-muted">
       <small>{{ current_news.created_at|date:'Y-m-d H:i' }}</small>
