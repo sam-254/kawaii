@@ -1,8 +1,7 @@
 {% extends 'base.html' %}
 {% block title %}
-  Category | {{ category.title }}
+  Category | {{ title }}
 {% endblock %}
-
 {% block content %}
     {% for item in current_category_news %}
     <div class="card mb-3">
