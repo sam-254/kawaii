@@ -77,21 +77,25 @@ WSGI_APPLICATION = 'kawaii.wsgi.application'
 
 DATABASES = {
     'default': {
-        # 'ENGINE': 'django.db.backends.sqlite3',
-        # 'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
 
 
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        # postgres db | start
 
-        'NAME': 'kawaii',
+        # 'ENGINE': 'django.db.backends.postgresql_psycopg2',
 
-        'USER': 'postgres',
+        # 'NAME': 'kawaii',
 
-        'PASSWORD': 'psql',
+        # 'USER': 'postgres',
 
-        'HOST': 'localhost',
+        # 'PASSWORD': 'psql',
 
-        'PORT': '5432',
+        # 'HOST': 'localhost',
+
+        # 'PORT': '5432',
+
+        # postgres db | end
 
     }
 }
