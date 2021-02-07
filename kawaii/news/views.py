@@ -5,6 +5,7 @@ from django.urls import reverse_lazy
 
 from .models import News, Category
 from .forms import NewsForm
+from .helper import error_404_view
 
 
 class HomeNews(ListView):
@@ -33,8 +34,16 @@ class NewsByCategory(ListView):
         context['title'] = Category.objects.get(pk=self.kwargs['category_id'])
         return context
 
+
     def get_queryset(self):
         return News.objects.filter(category_id=self.kwargs['category_id'])
+
+    # def get_queryset(self):
+    #     # first variant for getting all news of current category
+    #     # current_category = Category.objects.get(pk=self.kwargs['category_id'])
+    #     # return current_category.get_news.all()
+    #     # first variant end
+    #     return Category.objects.filter(category_id=self.kwargs['category_id'])
 
 
 class ViewNews(DetailView):
@@ -51,15 +60,6 @@ class CreateNews(CreateView):
     form_class = NewsForm
     template_name = 'news/add_news.html'
     # success_url = reverse_lazy('news')
-
-
-
-def error_404_view(request, exception):
-    return render(request, '404.html')
-
-
-
-
 
 
 # def index(request):

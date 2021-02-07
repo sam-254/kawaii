@@ -12,8 +12,7 @@ urlpatterns = [
     path('', include('news.urls'))
 ]
 
-handler404 = 'news.views.error_404_view'
-
+handler404 = 'news.helper.error_404_view'
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
