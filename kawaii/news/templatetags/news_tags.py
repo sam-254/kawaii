@@ -15,3 +15,10 @@ def show_categories():
     categories = Category.objects.all()
 
     return {'categories': categories,'categories_count': len(categories) }
+
+    register = template.Library()
+
+
+@register.filter
+def get_range(value):
+    return range(value)     
