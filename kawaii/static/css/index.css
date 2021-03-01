@@ -23,3 +23,9 @@
     margin-bottom: 0.2rem;
     margin-top: 1.2rem
 }
+
+.page-navigate {
+    background-color: #2ecc71;
+    color: #fff;
+    font-weight: bold;
+}

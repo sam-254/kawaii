@@ -5,10 +5,10 @@
         
     {% if page_obj.has_previous %}
     <li class="page-item">
-        <a class='page-link' href="?page=1">&laquo; first</a>
+        <a class='page-link page-navigate' href="?page=1">&laquo; first</a>
     </li>
     <li class="page-item">
-        <a class='page-link' href="?page={{ page_obj.previous_page_number }}"><small>&laquo;</small>previous</a>
+        <a class='page-link page-navigate' href="?page={{ page_obj.previous_page_number }}"><small>&laquo;</small>previous</a>
     </li>
     {% endif %}
     {% for pg in page_obj.paginator.num_pages|get_range %}
@@ -19,10 +19,10 @@
 
     {% if page_obj.has_next %}
     <li class="page-item">
-        <a class='page-link' href="?page={{ page_obj.next_page_number }}">next <small>&raquo;</small></a>
+        <a class='page-link page-navigate' href="?page={{ page_obj.next_page_number }}">next <small>&raquo;</small></a>
     </li>
     <li class="page-item">
-        <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+        <a class="page-link page-navigate" href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
     </li>
     {% endif %}
 </ul>
