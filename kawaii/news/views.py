@@ -12,7 +12,10 @@ class HomeNews(ListView):
     model = News
     template_name = 'news/home_news_list.html'
     context_object_name = 'news'
-    paginate_by = 2
+    paginate_by = 3
+
+    # this line below is alternative version of adding method in queryset
+    # queryset = News.objects.select_related('category')
 
     # extra_context = {'title': 'Home'}
 
@@ -23,7 +26,10 @@ class HomeNews(ListView):
         return context
 
     def get_queryset(self):
-        return News.objects.filter(is_published=True)
+        # select_related added for lazy loading queries to sql (optimizing) |
+        # passed "category" because related model is category
+        return News.objects.filter(is_published=True).select_related('category')
+
 
 
 class NewsByCategory(ListView):
@@ -39,7 +45,7 @@ class NewsByCategory(ListView):
 
 
     def get_queryset(self):
-        return News.objects.filter(category_id=self.kwargs['category_id'])
+        return News.objects.filter(category_id=self.kwargs['category_id']).select_related('category')
 
     # def get_queryset(self):
     #     # first variant for getting all news of current category
@@ -93,7 +99,7 @@ class CreateNews(CreateView):
 
 # def add_news(request):
 #     if request.method == "POST":
-       
+
 #         form = NewsForm(request.POST, request.FILES)
 #         if form.is_valid():
 #             # news = News.objects.create(**form.cleaned_data)         #without model connected
